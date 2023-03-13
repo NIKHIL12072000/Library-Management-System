@@ -41,7 +41,7 @@ public class StudentService {
         return studentRepository.findByAge(age);
     }
 
-    public StudentEmailUpdateResponseDTO updateResponseDTO(StudentEmailUpdateRequestDTO studentEmailUpdateRequestDTO){
+    public StudentEmailUpdateResponseDTO sendUpdateEmailRequestDTO(StudentEmailUpdateRequestDTO studentEmailUpdateRequestDTO){
         Student student=studentRepository.findById(studentEmailUpdateRequestDTO.getId()).get();
         student.setEmail(studentEmailUpdateRequestDTO.getEmail());
 
@@ -55,15 +55,15 @@ public class StudentService {
         return updateResponseDTO;
     }
 
-    public List<Student> getUsers() {
+    public List<Student> getStudents() {
         return studentRepository.findAll();
     }
 
-    public Student getUser(int id) {
+    public Student getStudentById(int id) {
         return studentRepository.findById(id).get();
     }
 
-    public List<Student> getName(String name) {
+    public List<Student> getAllStudentsByName(String name) {
         return studentRepository.findByName(name);
     }
 }

@@ -1,5 +1,6 @@
 package com.nikhil.librarymanagementsystem.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.nikhil.librarymanagementsystem.Enum.CardStatus;
 import com.nikhil.librarymanagementsystem.Enum.Department;
 import lombok.AllArgsConstructor;
@@ -57,8 +58,9 @@ public class Student {
     * to parent table it makes parent table dependent on child table*/
 
     //this annotation only helps in saving the card details without
-    //creating cardrepository class or else everything is same
+    //creating card repository class or else everything is same
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonIgnore
     LibraryCard card; //confined only to operation. connected logically but not present in student table physically
 
 }

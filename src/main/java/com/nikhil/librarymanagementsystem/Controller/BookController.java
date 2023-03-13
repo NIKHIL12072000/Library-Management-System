@@ -3,10 +3,9 @@ package com.nikhil.librarymanagementsystem.Controller;
 import com.nikhil.librarymanagementsystem.Entity.Book;
 import com.nikhil.librarymanagementsystem.Service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/library/books")
@@ -26,5 +25,8 @@ public class BookController{
         return "Book added successfully";
     }
 
-    //API to get all books
+    @GetMapping("/get-books")
+    public List<Book> getBooks(){
+        return bookService.getBooks();
+    }
 }

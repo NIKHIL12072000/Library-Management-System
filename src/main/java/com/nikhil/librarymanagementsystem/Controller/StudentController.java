@@ -20,20 +20,19 @@ public class StudentController {
         return service.addStudent(student);
     }
 
-    @GetMapping("/get_users")
-    public List<Student> getUsers(){
-        return service.getUsers();
+    @GetMapping("/get-students")
+    public List<Student> getStudents(){
+        return service.getStudents();
     }
 
-    @GetMapping("/get_user")
-    public Student getUser(@RequestParam("id") int id){
-        return service.getUser(id);
+    @GetMapping("/get-student-by-id")
+    public Student getStudentById(@RequestParam("id") int id){
+        return service.getStudentById(id);
     }
 
-    //Get all students by Name
-    @GetMapping("/get-name")
-    public List<Student> getName(@RequestParam String name){
-        return service.getName(name);
+    @GetMapping("/get-student-by-name")
+    public List<Student>  getAllStudentsByName(@RequestParam String name){
+        return service. getAllStudentsByName(name);
     }
 
     @GetMapping("/find-by-email")
@@ -42,15 +41,12 @@ public class StudentController {
     }
 
     @GetMapping("/find-by-age")
-    public List<Student> findByAge(int age){
+    public List<Student> findByAge(@RequestParam int age){
         return service.findByAge(age);
     }
 
     @PutMapping("/update-email")
-    public StudentEmailUpdateResponseDTO sendRequestDTO(@RequestBody int id, String new_email){
-        StudentEmailUpdateRequestDTO studentEmailUpdateRequestDTO=new StudentEmailUpdateRequestDTO();
-        studentEmailUpdateRequestDTO.setId(id);
-        studentEmailUpdateRequestDTO.setEmail(new_email);
-        return service.updateResponseDTO(studentEmailUpdateRequestDTO);
+    public StudentEmailUpdateResponseDTO sendUpdateEmailRequestDTO(@RequestBody StudentEmailUpdateRequestDTO studentEmailUpdateRequestDTO){
+        return service.sendUpdateEmailRequestDTO(studentEmailUpdateRequestDTO);
     }
 }
