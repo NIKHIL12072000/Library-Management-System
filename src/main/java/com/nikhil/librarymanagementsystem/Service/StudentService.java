@@ -1,5 +1,7 @@
 package com.nikhil.librarymanagementsystem.Service;
 
+import com.nikhil.librarymanagementsystem.DTO.StudentEmailUpdateRequestDTO;
+import com.nikhil.librarymanagementsystem.DTO.StudentEmailUpdateResponseDTO;
 import com.nikhil.librarymanagementsystem.Entity.LibraryCard;
 import com.nikhil.librarymanagementsystem.Entity.Student;
 import com.nikhil.librarymanagementsystem.Enum.CardStatus;
@@ -31,5 +33,37 @@ public class StudentService {
         return "Student Details Saved";
     }
 
+    public Student findByEmail(String email){
+        return studentRepository.findByEmail(email);
+    }
 
+    public List<Student> findByAge(int age){
+        return studentRepository.findByAge(age);
+    }
+
+    public StudentEmailUpdateResponseDTO updateResponseDTO(StudentEmailUpdateRequestDTO studentEmailUpdateRequestDTO){
+        Student student=studentRepository.findById(studentEmailUpdateRequestDTO.getId()).get();
+        student.setEmail(studentEmailUpdateRequestDTO.getEmail());
+
+        Student updateStudent=studentRepository.save(student);
+
+        StudentEmailUpdateResponseDTO updateResponseDTO=new StudentEmailUpdateResponseDTO();
+        updateResponseDTO.setId(updateStudent.getId());
+        updateResponseDTO.setEmail(updateStudent.getEmail());
+        updateResponseDTO.setName(updateStudent.getName());
+
+        return updateResponseDTO;
+    }
+
+    public List<Student> getUsers() {
+        return studentRepository.findAll();
+    }
+
+    public Student getUser(int id) {
+        return studentRepository.findById(id).get();
+    }
+
+    public List<Student> getName(String name) {
+        return studentRepository.findByName(name);
+    }
 }
