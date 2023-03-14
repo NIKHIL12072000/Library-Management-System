@@ -1,5 +1,8 @@
 package com.nikhil.librarymanagementsystem.Service;
 
+import com.nikhil.librarymanagementsystem.DTO.BookRequestDTO;
+import com.nikhil.librarymanagementsystem.DTO.BookResponseDTO;
+import com.nikhil.librarymanagementsystem.DTO.StudentResponseDTO;
 import com.nikhil.librarymanagementsystem.Entity.Author;
 import com.nikhil.librarymanagementsystem.Entity.Book;
 import com.nikhil.librarymanagementsystem.Repository.AuthorRepository;
@@ -17,21 +20,29 @@ public class BookService {
     @Autowired
     BookRepository bookRepository;
 
-    public String addBook(Book book) throws Exception {
-
+    public BookResponseDTO addBook(BookRequestDTO bookRequestDTO) {
+        Book book=new Book();
+        book.setTitle(bookRequestDTO.getTitle());
         Author author;
-        try{
-            author = authorRepository.findById(book.getAuthor().getId()).get();
+        try {
+            author = authorRepository.findById(bookRequestDTO.getAuthorId()).get();
         }
-        catch (Exception e){
-            return "Book not added";
+        catch(Exception e){
+            return null;
         }
+        book.setAuthor(author);
+        book.setPrice(bookRequestDTO.getPrice());
+        book.setGenre(bookRequestDTO.getGenre());
 
         List<Book> booksWritten = author.getBooks();
         booksWritten.add(book);
 
         authorRepository.save(author);
-        return "Book added";
+
+        BookResponseDTO bookResponseDTO=new BookResponseDTO();
+        bookResponseDTO.setPrice(book.getPrice());
+        bookResponseDTO.setTitle(book.getTitle());
+        return bookResponseDTO;
     }
 
     public List<Book> getBooks() {

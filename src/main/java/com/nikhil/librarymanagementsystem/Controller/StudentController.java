@@ -2,6 +2,8 @@ package com.nikhil.librarymanagementsystem.Controller;
 
 import com.nikhil.librarymanagementsystem.DTO.StudentEmailUpdateRequestDTO;
 import com.nikhil.librarymanagementsystem.DTO.StudentEmailUpdateResponseDTO;
+import com.nikhil.librarymanagementsystem.DTO.StudentRequestDTO;
+import com.nikhil.librarymanagementsystem.DTO.StudentResponseDTO;
 import com.nikhil.librarymanagementsystem.Entity.Student;
 import com.nikhil.librarymanagementsystem.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,8 @@ public class StudentController {
     StudentService service;
 
     @PostMapping("/add-student")
-    public String addStudent(@RequestBody Student student){
-        return service.addStudent(student);
+    public StudentResponseDTO addStudent(@RequestBody StudentRequestDTO studentRequestDTO){
+        return service.addStudent(studentRequestDTO);
     }
 
     @GetMapping("/get-students")

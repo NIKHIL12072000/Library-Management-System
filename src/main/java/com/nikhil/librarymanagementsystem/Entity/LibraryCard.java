@@ -5,8 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ public class LibraryCard {
     @Enumerated(EnumType.STRING)
     private CardStatus status;
 
-    @CreatedDate
+    @CreationTimestamp
     private Date creationDate;
     @UpdateTimestamp
     private Date updationDate;
@@ -36,7 +36,7 @@ public class LibraryCard {
     Student student;
 
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
-    List<Book> books=new ArrayList<>();
+    List<Book> booksIssued=new ArrayList<>();
 
     @OneToMany(mappedBy = "card",cascade = CascadeType.ALL)
     List<Transaction> transactions=new ArrayList<>();

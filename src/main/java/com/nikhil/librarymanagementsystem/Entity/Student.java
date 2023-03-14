@@ -1,7 +1,6 @@
 package com.nikhil.librarymanagementsystem.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.nikhil.librarymanagementsystem.Enum.CardStatus;
 import com.nikhil.librarymanagementsystem.Enum.Department;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,8 +8,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
